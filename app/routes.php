@@ -11,7 +11,25 @@
 |
 */
 
-Route::get('/', function()
+Route::get('/', 'HomeController@showWelcome');
+
+Route::get('register', 'RegistrationController@showRegistrationForm');
+
+Route::post('register', 'RegistrationController@submitRegistrationForm');
+
+Route::get('login', 'LoginController@showLoginForm');
+
+Route::post('login', 'LoginController@login');
+
+Route::get('{user.id}/new_post', 'PostController@showNewPostForm');
+
+Route::post('new_post', 'PostController@addPost');
+
+Route::get('{user.id}/posts', 'PostController@viewPosts');
+
+Route::get('login', function()
 {
-	return View::make('hello');
+	$encrypted = Crypt::encrypt('secret');
+	return $encrypted;
 });
+
