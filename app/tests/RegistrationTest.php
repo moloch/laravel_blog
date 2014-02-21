@@ -22,7 +22,7 @@ class RegistrationTest extends TestCase {
 		$crawler = $this->client->request('POST', 'register', $server=$parameters);
         $response = $this->client->getResponse();
 		$user = User::find("1");
-		$this->assertEquals(Crypt::decrypt($user->password), 'ciaociao');
+		$this->assertTrue(Hash::check('ciaociao',$user->password));
 		$this->assertEquals($response->getData(), 'OK');
 	}
 

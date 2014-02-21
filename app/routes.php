@@ -11,9 +11,14 @@
 |
 */
 
-Route::controller('/', 'HomeController');
+Route::get('/', function()
+{
+	return View::make('homepage');
+});
 
 
 // Registration form page
 Route::controller('register','RegistrationController');
+
+Route::controller('login','LoginController');
 

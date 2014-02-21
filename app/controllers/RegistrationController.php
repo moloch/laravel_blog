@@ -16,7 +16,7 @@ class RegistrationController extends BaseController {
 			return Response::json("KO");
 		}
 		$user = new User(Input::all());
-		$user -> password = Crypt::encrypt(Input::get("password"));
+		$user -> password = Hash::make(Input::get("password"));
 		$user -> save();
 		return Response::json("OK");
 	}

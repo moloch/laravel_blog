@@ -36,5 +36,20 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase {
 
 		$this -> prepareForTests();
 	}
+	
+    public function createTestUser() {
+		$parameters = array(
+		 'email' => 'dario.coco@gmail.com', 
+		 'password' => 'ciaociao',
+		 'first_name' => 'Dario',
+		 'last_name' => 'Coco',
+		 'address' => 'Via alla boschina',
+		 'city' => 'Sotto il Monte',
+		 'province' => 'BG',
+		 'gender' => 'M');
+		$user = new User($parameters);
+		$user -> password = Hash::make($user -> password);
+		$user -> save();
+	}
 
 }
