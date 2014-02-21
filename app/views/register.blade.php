@@ -1,15 +1,7 @@
 @extends('layout')
 
 @section('content')
-   {{ Form::open(array('action' => 'RegistrationController@submitRegistrationForm')) }}
-   			$table -> string('email') -> unique();
-			$table -> string('password');
-			$table -> string('last_name','30');
-			$table -> string('first_name','30');
-			$table -> text('address');
-			$table -> text('city');
-			$table -> string('province','2');
-			$table -> string('gender','1');
+   {{ Form::open(array('url' => 'register')) }}
    <ul>
       <li>
     	{{ Form::label('first_name', 'Nome:') }}
@@ -20,28 +12,28 @@
     	{{ Form::text('last_name') }}
       </li>
       <li>
-    	{{ Form::label('first_name', 'Email:') }}
-    	{{ Form::text('first_name') }}
+    	{{ Form::label('email', 'Email:') }}
+    	{{ Form::text('email') }}
       </li>
       <li>
-    	{{ Form::label('first_name', 'Email:') }}
-    	{{ Form::text('first_name') }}
+    	{{ Form::label('password', 'Password:') }}
+    	{{ Form::password('password') }}
       </li>
       <li>
-    	{{ Form::label('first_name', 'Email:') }}
-    	{{ Form::text('first_name') }}
+    	{{ Form::label('address', 'Indirizzo:') }}
+    	{{ Form::text('address') }}
       </li>
       <li>
-    	{{ Form::label('first_name', 'Email:') }}
-    	{{ Form::text('first_name') }}
+    	{{ Form::label('city', 'Citta:') }}
+    	{{ Form::text('city') }}
       </li>
       <li>
-    	{{ Form::label('first_name', 'Email:') }}
-    	{{ Form::text('first_name') }}
+    	{{ Form::label('province', 'Provincia:') }}
+    	{{ Form::text('province') }}
       </li>
       <li>
-    	{{ Form::label('first_name', 'Email:') }}
-    	{{ Form::text('first_name') }}
+    	{{ Form::label('gender', 'Genere:') }}
+    	{{ Form::text('gender') }}
       </li>
     </ul>
     {{ Form::submit('Submit') }}

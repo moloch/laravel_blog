@@ -1,11 +1,11 @@
 <?php
 class RegistrationController extends BaseController {
 
-	public function showRegistrationForm() {
+	public function getIndex() {
 		return View::make('register');
 	}
 
-	public function submitRegistrationForm() {
+	public function postIndex() {
 		$rules = array(
 		 'email' => 'required|email', 
 		 'password' => 'required',

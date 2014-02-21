@@ -17,7 +17,6 @@ class PostControllerTest extends TestCase {
 		$crawler = $this->client->request('POST', 'new_post', $server=$parameters);
         $response = $this->client->getResponse();
 		$post = Post::find("1");
-		var_dump($post);
 		$this->assertEquals($response->getData(), 'OK');
 	}
 

@@ -2,15 +2,9 @@
 
 class RegistrationTest extends TestCase {
 
-	/**
-	 * A basic functional test example.
-	 *
-	 * @return void
-	 */
 	public function testRegister()
 	{
 		$crawler = $this->client->request('GET', 'register');
-        echo $this->client->getResponse();
 		$this->assertTrue($this->client->getResponse()->isOk());
 	}
 	
@@ -28,9 +22,7 @@ class RegistrationTest extends TestCase {
 		$crawler = $this->client->request('POST', 'register', $server=$parameters);
         $response = $this->client->getResponse();
 		$user = User::find("1");
-		var_dump($user);
-		var_dump($user->password);
-		var_dump(Crypt::decrypt($user->password));
+		$this->assertEquals(Crypt::decrypt($user->password), 'ciaociao');
 		$this->assertEquals($response->getData(), 'OK');
 	}
 

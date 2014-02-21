@@ -13,23 +13,7 @@
 
 Route::get('/', 'HomeController@showWelcome');
 
-Route::get('register', 'RegistrationController@showRegistrationForm');
 
-Route::post('register', 'RegistrationController@submitRegistrationForm');
-
-Route::get('login', 'LoginController@showLoginForm');
-
-Route::post('login', 'LoginController@login');
-
-Route::get('{user.id}/new_post', 'PostController@showNewPostForm');
-
-Route::post('new_post', 'PostController@addPost');
-
-Route::get('{user.id}/posts', 'PostController@viewPosts');
-
-Route::get('login', function()
-{
-	$encrypted = Crypt::encrypt('secret');
-	return $encrypted;
-});
+// Registration form page
+Route::controller('register','RegistrationController');
 
