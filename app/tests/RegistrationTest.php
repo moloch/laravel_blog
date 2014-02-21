@@ -2,13 +2,13 @@
 
 class RegistrationTest extends TestCase {
 
-	public function testRegister()
+	public function testGetRegister()
 	{
 		$crawler = $this->client->request('GET', 'register');
 		$this->assertTrue($this->client->getResponse()->isOk());
 	}
 	
-	public function testSubmitRegister()
+	public function testPostRegister()
 	{
 		$parameters = array(
 		 'email' => 'dario.coco@gmail.com', 
