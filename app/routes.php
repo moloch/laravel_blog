@@ -13,7 +13,10 @@
 
 Route::get('/', function()
 {
-	return View::make('homepage');
+	$auth_token = Cookie::get('auth_token');
+	$session_token = Session::get('auth_token');
+	$isAuth = ($auth_token!= null and $auth_token == $session_token);
+	return View::make('homepage')->with('isAuth',$isAuth);
 });
 
 

@@ -1,6 +1,8 @@
 @extends('layout')
 
 @section('content')
+
+@if (!$isAuth)
    <h2>Login</h2>
    {{ Form::open(array('url' => 'login')) }}
    <ul>
@@ -14,5 +16,9 @@
       </li>
     </ul>
     {{ Form::submit('Login') }}
-    {{ Form::close() }}  
+    {{ Form::close() }} 
+@else
+	<p>Posts</p>
+@endif
+ 
 @stop
