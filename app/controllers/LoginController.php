@@ -7,7 +7,7 @@ class LoginController extends BaseController {
 		$user = User::where('email', '=', $email) -> first();
 		if ($user != null and Hash::check($password, $user -> password)) {
 			$name = 'auth_token';
-			$value = 'bin2hex(openssl_random_pseudo_bytes(32))';
+			$value = bin2hex(openssl_random_pseudo_bytes(32));
 			$minutes = 15;
 			Session::put($name, $value);
 			Cookie::queue($name, $value, $minutes);
