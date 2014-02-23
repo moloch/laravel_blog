@@ -27,3 +27,5 @@ Route::controller('register','RegistrationController');
 
 Route::controller('login','LoginController');
 
+Route::controller('{id}','PostController');
+
