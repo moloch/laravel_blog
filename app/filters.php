@@ -78,3 +78,17 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+
+// Custom filters
+
+Route::filter('auth.custom_token', function()
+{
+	$auth_token = Cookie::get('auth_token');
+	$email = Session::get($auth_token, null);
+	$authorized = ($auth_token!= null and $email != null);
+    if (!$authorized)
+    {
+        return Redirect::to('/');
+    }
+});
