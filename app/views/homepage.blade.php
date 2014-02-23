@@ -18,7 +18,13 @@
     {{ Form::submit('Login') }}
     {{ Form::close() }} 
 @else
+	<p>Logged in as {{{$email}}}</p>
 	<p>Posts</p>
+	@foreach ($posts as $post)
+    	<h3>{{ $post->title }}</h3>
+    	<p> {{ $post->body }}</p>
+    	<p> Posted by: {{ $post->user->email }}</p>
+	@endforeach
 @endif
  
 @stop

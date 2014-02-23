@@ -11,12 +11,5 @@ class LoginTest extends TestCase {
 		$response = $this -> login('dario.coco666@gmail.com','ciaociao123');
 		$this -> assertEquals($response -> getContent(), 'Invalid username or password');
 	}
-	
-	private function login($email, $password){
-		$parameters = array('email' => $email, 'password' => $password);
-		$crawler = $this -> client -> request('POST', 'login', $server = $parameters);
-		$response = $this -> client -> getResponse();
-		return $response;
-	}
 
 }

@@ -8,10 +8,11 @@ class LoginController extends BaseController {
 		if ($user != null and Hash::check($password, $user -> password)) {
 			$name = 'auth_token';
 			$value = bin2hex(openssl_random_pseudo_bytes(32));
-			$minutes = 15;
-			Session::put($name, $value);
-			Cookie::queue($name, $value, $minutes);
-			return "Login successful";
+			$minutes = '15';
+			Session::put($value, $email);
+			$cookie = Cookie::make($name, $value, $minutes);
+			$response = Response::make('Login successful');
+			return $response->withCookie($cookie);
 		} else
 			return "Invalid username or password";
 		//return  Response::json(bin2hex(openssl_random_pseudo_bytes(32)));

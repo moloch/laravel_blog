@@ -14,9 +14,11 @@
 Route::get('/', function()
 {
 	$auth_token = Cookie::get('auth_token');
-	$session_token = Session::get('auth_token');
-	$isAuth = ($auth_token!= null and $auth_token == $session_token);
-	return View::make('homepage')->with('isAuth',$isAuth);
+	$email = Session::get($auth_token, null);
+	$isAuth = ($auth_token!= null and $email != null);
+	$posts = Post::all();
+	$params = array('isAuth' => $isAuth, 'email' => $email, 'posts' => $posts) ;
+	return View::make('homepage',$params);
 });
 
 
