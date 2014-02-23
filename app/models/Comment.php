@@ -1,6 +1,6 @@
 <?php
 
-class Post extends Eloquent {
+class Comment extends Eloquent {
 
 	protected $guarded = array();
 
@@ -8,8 +8,8 @@ class Post extends Eloquent {
 		return $this -> belongs_to('User', 'user_id');
 	}
 	
-    public function comments() {
-		return $this -> has_many('Comment');
+    public function post() {
+		return $this -> belongs_to('Post', 'post_id');
 	}
 
 }
