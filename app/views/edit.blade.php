@@ -15,7 +15,7 @@
   	  {{ Form::textarea('text') }}
   	</li>
   </ul>
-  {{ Form::submit('Create post') }}
+  {{ Form::submit('Submit changes') }}
   {{ Form::close() }}  
  
 @stop

@@ -29,3 +29,7 @@ Route::controller('login','LoginController');
 
 Route::controller('post','PostController');
 
+Route::controller('comment','CommentController');
+
+
+

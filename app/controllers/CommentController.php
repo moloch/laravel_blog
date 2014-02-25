@@ -1,35 +1,31 @@
 <?php
-class NewController extends BaseController {
+class CommentController extends BaseController {
 	
 	/**
      * Instantiate a new UserController instance.
      */
     public function __construct()
     {
-        $this->beforeFilter('auth.custom_token', array('only' =>
-                            							array('getIndex', 'postIndex')));
+        $this->beforeFilter('auth.custom_token');
     }
 
-	public function postIndex() {
-		
-		$auth_token = Cookie::get('auth_token');
-		$email = Session::get($auth_token, null);
-		$user = User::where('email', '=', $email)->first();
-		$new_post = array('title' => Input::get('title'),
+	public function postNew($id) {
+		$user = User::where('email', '=', $this->getEmail())->first();
+		$new_comment = array(
 		 'text' => Input::get('text'),
-		 'user_id' => $user->id);
+		 'user_id' => $user->id,
+		 'post_id' => $id);
 
-		$rules = array('title' => 'required|min:3|max:64', 'textext' => 'required|min:10');
+		$rules = array('text' => 'required|min:10');
 
-		$validation = Validator::make($new_post, $rules);
+		$validation = Validator::make($new_comment, $rules);
 		if ($validation -> fails()) {
 			return Response::json("KO");
 		}
 		// create the new post after passing validation
-		$post = new Post($new_post);
-		$post -> save();
-		// redirect to viewing all posts
-		return Response::json("array('post_id' => ".$post->id.")");
+		$comment = new Comment($new_comment);
+		$comment -> save();
+		return Redirect::to('/post/view/'.$id);
 	}
 
 }
