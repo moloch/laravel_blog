@@ -13,7 +13,7 @@ class NewController extends BaseController {
 	public function getIndex(){
 		$auth_token = Cookie::get('auth_token');
 		$email = Session::get($auth_token, null);
-		return View::make('new', Array('email' => $email));
+		return View::make('new', array('email' => $email));
 	}
 
 	public function postIndex() {
