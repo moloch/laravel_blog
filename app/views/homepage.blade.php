@@ -21,7 +21,9 @@
 	<p>Logged in as {{{$email}}}</p>
 	<p>Posts</p>
 	@foreach ($posts as $post)
-    	<h3>{{ $post->title }}</h3>
+    	<a href="post/{{$post->id}}">
+    		<h3>{{ $post->title }}</h3>
+    	</a>
     	<p> {{ $post->body }}</p>
     	<p> Posted by: {{ $post->user->email }}</p>
 	@endforeach
