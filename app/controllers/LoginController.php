@@ -11,7 +11,7 @@ class LoginController extends BaseController {
 			$minutes = '15';
 			Session::put($value, $email);
 			$cookie = Cookie::make($name, $value, $minutes);
-			$response = Response::make('Login successful');
+			$response = Redirect::to('/');
 			return $response->withCookie($cookie);
 		} else
 			return "Invalid username or password";
