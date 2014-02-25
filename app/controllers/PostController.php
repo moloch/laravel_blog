@@ -10,16 +10,11 @@ class PostController extends BaseController {
     }
 	
 	public function getNew(){
-		$auth_token = Cookie::get('auth_token');
-		$email = Session::get($auth_token, null);
-		return View::make('new', array('email' => $email));
+		return View::make('new', array('email' => $this->getEmail()));
 	}
 
 	public function postNew() {
-		
-		$auth_token = Cookie::get('auth_token');
-		$email = Session::get($auth_token, null);
-		$user = User::where('email', '=', $email)->first();
+		$user = User::where('email', '=', $this->getEmail())->first();
 		$new_post = array('title' => Input::get('title'),
 		 'body' => Input::get('text'),
 		 'user_id' => $user->id);
@@ -38,18 +33,14 @@ class PostController extends BaseController {
 	}
 	
 	public function getView($id){
-		$auth_token = Cookie::get('auth_token');
-		$email = Session::get($auth_token, null);
 		$post = Post::find($id);
-		$params = array('email' => $email, 'post' => $post) ;
+		$params = array('email' => $this->getEmail(), 'post' => $post) ;
 		return View::make('post',$params);
 	}
 	
 	public function postDelete($id){
-		$auth_token = Cookie::get('auth_token');
-		$email = Session::get($auth_token, null);
 		$post = Post::find($id);
-		$user = User::where('email', '=', $email) -> first();
+		$user = User::where('email', '=', $this->getEmail()) -> first();
 		if($post !== null and $post->user_id === $user->id ){
 			$post->delete();
 		}

@@ -14,5 +14,10 @@ class BaseController extends Controller {
 			$this->layout = View::make($this->layout);
 		}
 	}
+	
+	protected function getEmail(){
+		$auth_token = Cookie::get('auth_token');
+		return Session::get($auth_token, null);
+	}
 
 }
