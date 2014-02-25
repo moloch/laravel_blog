@@ -29,5 +29,7 @@ Route::controller('login','LoginController');
 
 Route::controller('post/{id}','PostController');
 
+Route::controller('delete/{id}','DeleteController');
+
 Route::controller('new','NewController');
 
