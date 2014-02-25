@@ -16,7 +16,7 @@ class CreatePostsTable extends Migration {
         Schema::create('posts', function($table) {
             $table->increments('id');
             $table->string('title', 64);
-            $table->text('body', 255);
+            $table->text('text', 255);
             $table->integer('user_id')->unsigned();
             $table->timestamps();
 			$table->foreign('user_id')->references('id')->on('users');

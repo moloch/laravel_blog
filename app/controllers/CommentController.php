@@ -16,10 +16,10 @@ class NewController extends BaseController {
 		$email = Session::get($auth_token, null);
 		$user = User::where('email', '=', $email)->first();
 		$new_post = array('title' => Input::get('title'),
-		 'body' => Input::get('text'),
+		 'text' => Input::get('text'),
 		 'user_id' => $user->id);
 
-		$rules = array('title' => 'required|min:3|max:64', 'body' => 'required|min:10');
+		$rules = array('title' => 'required|min:3|max:64', 'textext' => 'required|min:10');
 
 		$validation = Validator::make($new_post, $rules);
 		if ($validation -> fails()) {

@@ -24,7 +24,7 @@
     	<a href="post/view/{{$post->id}}">
     		<h3>{{ $post->title }}</h3>
     	</a>
-    	<p> {{ $post->body }}</p>
+    	<p> {{ $post->text }}</p>
     	<p> Posted by: {{ $post->user->email }}</p>
 	@endforeach
 @endif

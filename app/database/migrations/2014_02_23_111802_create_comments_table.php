@@ -15,7 +15,7 @@ class CreateCommentsTable extends Migration {
     {
         Schema::create('comments', function($table) {
             $table->increments('id');
-            $table->text('body', 255);
+            $table->text('texttext', 255);
             $table->integer('post_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->timestamps();

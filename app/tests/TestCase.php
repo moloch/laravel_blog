@@ -55,7 +55,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase {
 	public function createTestPost() {
 		$parameters = Array(
 			'title' => 'My new post',
-			'body' => 'This is my new post',
+			'text' => 'This is my new post',
 			'user_id' => 1);
 		$post = new Post($parameters);
 		$post -> save();

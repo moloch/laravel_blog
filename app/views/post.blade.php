@@ -4,7 +4,7 @@
 
 	<p>Logged in as {{{$email}}}</p>
     <h3>{{ $post->title }}</h3>
-    <p> {{ $post->body }}</p>
+    <p> {{ $post->text }}</p>
     <p> Posted by: {{ $post->user->email }}</p>
     
     @if(count($post->comments) !== 0)
@@ -12,7 +12,7 @@
     @endif
     @foreach ($post->comments as $comment)
         <p>{{ $post->user->email }}:</p>
-    	<p>{{ $comment->body }}</p>
+    	<p>{{ $comment->text }}</p>
     @endforeach
     
     {{ Form::open(array('url' => 'comment/'.$post->id)) }}

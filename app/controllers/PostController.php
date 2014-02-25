@@ -16,10 +16,10 @@ class PostController extends BaseController {
 	public function postNew() {
 		$user = User::where('email', '=', $this->getEmail())->first();
 		$new_post = array('title' => Input::get('title'),
-		 'body' => Input::get('text'),
+		 'text' => Input::get('text'),
 		 'user_id' => $user->id);
 
-		$rules = array('title' => 'required|min:3|max:64', 'body' => 'required|min:10');
+		$rules = array('title' => 'required|min:3|max:64', 'text' => 'required|min:10');
 
 		$validation = Validator::make($new_post, $rules);
 		if ($validation -> fails()) {
@@ -28,8 +28,7 @@ class PostController extends BaseController {
 		// create the new post after passing validation
 		$post = new Post($new_post);
 		$post -> save();
-		// redirect to viewing all posts
-		return Response::json("array('post_id' => ".$post->id.")");
+		return Redirect::to('/');
 	}
 	
 	public function getView($id){
@@ -44,8 +43,33 @@ class PostController extends BaseController {
 		if($post !== null and $post->user_id === $user->id ){
 			$post->delete();
 		}
-		$response = Redirect::to('/');
-		return $response;
+		return Redirect::to('/');
+	}
+	
+	public function getEdit($id){
+		$post = Post::find($id);
+		$params = array('email' => $this->getEmail(), 'post' => $post) ;
+		return View::make('edit',$params);
+	}
+	
+	public function postEdit($id){
+		$post = Post::find($id);
+		$user = User::where('email', '=', $this->getEmail())->first();
+		$new_post = array('title' => Input::get('title'),
+		 'text' => Input::get('text'),
+		 'user_id' => $user->id);
+
+		$rules = array('title' => 'required|min:3|max:64', 'text' => 'required|min:10');
+
+		$validation = Validator::make($new_post, $rules);
+		if ($validation -> fails()) {
+			return Redirect::to('edit/'.$id);
+		}
+		// create the new post after passing validation
+		$post -> title = $new_post['title'];
+		$post -> text = $new_post['text'];
+		$post -> save();
+		return Redirect::to('/');
 	}
 
 }

@@ -15,7 +15,6 @@ class LoginController extends BaseController {
 			return $response->withCookie($cookie);
 		} else
 			return "Invalid username or password";
-		//return  Response::json(bin2hex(openssl_random_pseudo_bytes(32)));
 	}
 
 }
