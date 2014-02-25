@@ -5,8 +5,9 @@
   var $SCRIPT_ROOT = "{{ URL::to('/') }}";
 </script>
     <body>
-        <h1>Contacts</h1>
-
+        <a href="{{ URL::to('/') }}">
+        	<h1>Laravel Blog</h1>
+        </a>
         @yield('content')
     </body>
 </html>
