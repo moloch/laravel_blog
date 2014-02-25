@@ -4,7 +4,7 @@
 
 <p>Logged in as {{{$email}}}</p>
 
-  {{ Form::open(array('url' => 'new')) }}
+  {{ Form::open(array('url' => 'post/new')) }}
   <ul>
   	<li>
   	  {{ Form::label('title', 'Title:') }}

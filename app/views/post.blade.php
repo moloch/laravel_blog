@@ -7,14 +7,22 @@
     <p> {{ $post->body }}</p>
     <p> Posted by: {{ $post->user->email }}</p>
     
-    <h3>Comments</h3>
+    @if(count($post->comments) !== 0)
+    	<h3>Comments</h3>
+    @endif
     @foreach ($post->comments as $comment)
         <p>{{ $post->user->email }}:</p>
     	<p>{{ $comment->body }}</p>
     @endforeach
+    
+    {{ Form::open(array('url' => 'comment/'.$post->id)) }}
+  	<p>Comment:</p>
+  	<p>{{ Form::textarea('text') }}</p>
+    {{ Form::submit('Add comment') }}
+  	{{ Form::close() }}  
 
     @if ($email === $post->user->email)
-    	{{ Form::open(array('url' => 'delete/'.$post->id)) }}
+    	{{ Form::open(array('url' => 'post/delete/'.$post->id)) }}
     	{{ Form::submit('Delete this post') }}
   		{{ Form::close() }}  
   	@endif
