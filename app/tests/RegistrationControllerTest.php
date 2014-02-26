@@ -1,6 +1,6 @@
 <?php
 
-class RegistrationTest extends TestCase {
+class RegistrationControllerTest extends TestCase {
 
 	public function testGetRegister()
 	{
