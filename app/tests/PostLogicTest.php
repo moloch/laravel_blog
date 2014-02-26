@@ -17,7 +17,7 @@ class PostLogicTest extends TestCase {
 	}
 
 	public function testViewPost(){
-		$post = $this -> postLogic-> viewPost($this-> post -> id);
+		$post = $this -> postLogic-> view($this-> post -> id);
 		$this->assertTrue(is_array($post));
 	}
 	
@@ -25,7 +25,7 @@ class PostLogicTest extends TestCase {
 		$title = $this -> post -> title."_new";
 		$text = $this -> post -> text."_new";
 		$user_id = $this -> post -> user_id;
-		$post_id = $this -> postLogic -> updatePost($title, $text, $user_id);
+		$post_id = $this -> postLogic -> update($title, $text, $user_id);
 		$this -> assertFalse(is_null($post_id));
 		$this -> assertEquals($post_id, $this -> post -> id);
 	}
@@ -34,16 +34,16 @@ class PostLogicTest extends TestCase {
 		$title = $this -> post -> title;
 		$text = $this -> post -> text;
 		$user_id = $this -> post -> user_id;
-		$post_id = $this -> postLogic -> newPost($title, $text, $user_id);
+		$post_id = $this -> postLogic -> create($title, $text, $user_id, null);
 		$this -> assertFalse(is_null($post_id));
 		$this -> assertEquals($post_id, $this -> post -> id + 1);
 	}
 	
 	public function testDeletePost(){
-		$post_id = $this -> postLogic -> deletePost($this->post -> id);
+		$post_id = $this -> postLogic -> delete($this->post -> id);
 		$this -> assertFalse(is_null($post_id));
 		$this -> assertEquals($post_id, $this -> post -> id);
-		$post_id = $this -> postLogic -> deletePost($this->post -> id);
+		$post_id = $this -> postLogic -> delete($this->post -> id);
 		$this -> assertTrue(is_null($post_id));
 	}
 	

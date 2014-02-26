@@ -1,41 +1,25 @@
 <?php
 
-class PostLogic {
+class PostLogic extends CRUDLogic{
 
-	public function viewPost($id) {
-		$post = Post::find($id);
-		return $post -> toArray();
+	public function view($id) {
+		$this -> model = Post::find($id);
+		return parent::view($id);
 	}
 
-	public function updatePost($title, $text, $id) {
-		$post = Post::find($id);
-		if ($post !== null) {
-			$post -> title = $title;
-			$post -> text = $text;
-			$post -> save();
-			return $id;
-		} else {
-			return null;
-		}
+	public function update($title, $text, $id) {
+		$this -> model = Post::find($id);
+		return parent::update($title, $text, $id);
 	}
 
-	public function newPost($title, $text, $user_id) {
-		$post = new Post();
-		$post -> title = $title;
-		$post -> text = $text;
-		$post -> user_id = $user_id;
-		$post -> save();
-		return $post -> id;
+	public function create($title, $text, $user_id, $post_id) {
+		$this -> model = new Post();
+		return parent::create($title, $text, $user_id, null);
 	}
 
-	public function deletePost($id) {
-		$post = Post::find($id);
-		if ($post !== null) {
-			$post -> delete();
-			return $id;
-		} else {
-			return null;
-		}
+	public function delete($id) {
+		$this -> model = Post::find($id);
+		return parent::delete($id);
 
 	}
 
