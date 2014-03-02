@@ -7,6 +7,7 @@ class PostController extends BaseController {
     public function __construct()
     {
         $this->beforeFilter('auth.custom_token');
+		$this->postLogic = new PostLogic();
     }
 	
 	public function getNew(){
@@ -25,9 +26,7 @@ class PostController extends BaseController {
 		if ($validation -> fails()) {
 			return Response::json("KO");
 		}
-		// create the new post after passing validation
-		$post = new Post($new_post);
-		$post -> save();
+		$this -> postLogic -> create($new_post['title'], $new_post['text'], $new_post['user_id'], null);
 		return Redirect::to('/');
 	}
 	
