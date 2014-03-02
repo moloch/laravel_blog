@@ -52,7 +52,6 @@ class PostController extends BaseController {
 	}
 	
 	public function postEdit($id){
-		$post = Post::find($id);
 		$user = User::where('email', '=', $this->getEmail())->first();
 		$new_post = array('title' => Input::get('title'),
 		 'text' => Input::get('text'),
@@ -64,10 +63,7 @@ class PostController extends BaseController {
 		if ($validation -> fails()) {
 			return Redirect::to('edit/'.$id);
 		}
-		// create the new post after passing validation
-		$post -> title = $new_post['title'];
-		$post -> text = $new_post['text'];
-		$post -> save();
+		$this -> postLogic -> update($new_post['title'], $new_post['text'], $id);
 		return Redirect::to('/');
 	}
 
